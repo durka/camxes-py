@@ -714,7 +714,7 @@ pre_zei_bu = (
   si_clause?
 )
 
-dot_star = ~"."*
+dot_star = ( ~"."* )
 
 post_clause = ( spaces? si_clause? !ZEI_clause !BU_clause indicators* )
 
