@@ -172,9 +172,18 @@ if __name__ == '__main__':
                      type="string", action="store",
                      dest="rule")
 
+  options.add_option("--profile",
+                     action="store_true",
+                     dest="profile",
+                     default=False)
+
   (params, argv) = options.parse_args()
   text = " ".join(argv)
 
   configure_platform()
-  main(text, params)
+  if params.profile:
+    import cProfile as profile
+    profile.runctx('main(text, params)', globals(), locals(), filename="camxes.profile")
+  else:
+    main(text, params)
 
