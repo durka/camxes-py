@@ -86,16 +86,24 @@ def python_version():
 
 def main(text, options):
   parser = build_parser(options)
-  parsed = parser.parse(text)
-  transformer = build_transformer(options.transformer, parser)
-  transformed = transformer.transform(parsed)
+  if options.fast:
+    parsed = parser.parse(text, rule_name=options.rule)
+    transformer = None
+    transformed = parsed
+  else:
+    parsed = parser.parse(text)
+    transformer = build_transformer(options.transformer, parser)
+    transformed = transformer.transform(parsed)
   print serialize(transformed,
                   options.serializer,
                   default_object_serializer(transformer))
 
 def build_parser(options):
   parser_option = options.parser if len(PARSERS) > 1 else "camxes-ilmen"
-  if parser_option == 'camxes-ilmen':
+  if options.fast:
+    from parsers import grako
+    return grako.LojbanParser()
+  elif parser_option == 'camxes-ilmen':
     from parsers import camxes_ilmen
     return camxes_ilmen.Parser(options.rule)
   else:
@@ -175,6 +183,11 @@ if __name__ == '__main__':
   options.add_option("--profile",
                      action="store_true",
                      dest="profile",
+                     default=False)
+
+  options.add_option("--fast",
+                     action="store_true",
+                     dest="fast",
                      default=False)
 
   (params, argv) = options.parse_args()
