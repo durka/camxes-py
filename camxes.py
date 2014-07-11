@@ -101,8 +101,9 @@ def main(text, options):
 def build_parser(options):
   parser_option = options.parser if len(PARSERS) > 1 else "camxes-ilmen"
   if options.fast:
-    from parsers import grako
-    return grako.LojbanParser()
+    from parsers import camxes_grako as grako
+    from parsers import grako_ext
+    return grako.LojbanParser(parseinfo=True, semantics=grako_ext.ModifiedLojbanSemantics())
   elif parser_option == 'camxes-ilmen':
     from parsers import camxes_ilmen
     return camxes_ilmen.Parser(options.rule)

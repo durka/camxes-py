@@ -1,15 +1,16 @@
-remove comments
-join indented lines
-add semicolons
+-remove comments
+-join indented lines
+-add semicolons
 remove parentheses
-change / to |
-change * to {}* (also parens!)
-change + to {}+ (also parens!)
-change ? to square brackets (also parens!)
-change "" to ()
-change "..." to ?/.../?
-remove ~
+-change / to |
+-change * to {}* (also parens!)
+-change + to {}+ (also parens!)
+-change ? to square brackets (also parens!)
+-change "" to ()
+-change "..." to ?/.../?
+-remove ~
 add :
+prefix all rules with lowercase letter
 
 why didn't zei_tail or vlatai_zei_tail get a semicolon
 dot_star didn't get the * treatment because the regex was bad
