@@ -13,7 +13,7 @@ import parsimonious_ext # expression_nodes
 VERSION = "v0.7"
 
 PARSERS      = [ 'camxes-ilmen' ]
-TRANSFORMERS = [ 'camxes-json', 'camxes-morphology', 'vlatai', 'node-coverage', 'debug', 'raw', 'lujvo' ]
+TRANSFORMERS = [ 'camxes-json', 'camxes-morphology', 'vlatai', 'node-coverage', 'debug', 'raw', 'lujvo-break', 'lujvo-expand' ]
 SERIALIZERS  = [ 'json', 'json-pretty', 'json-compact', 'xml' ]
 
 IMPLEMENTATION_RECURSION_LIMIT = {
@@ -127,9 +127,12 @@ def build_transformer(transformer_option, parser):
     elif transformer_option == 'raw':
         from transformers import raw
         return raw.Transformer()
-    elif transformer_option == 'lujvo':
+    elif transformer_option == 'lujvo-break':
         from transformers import lujvo
-        return lujvo.Transformer()
+        return lujvo.Transformer(expand=False)
+    elif transformer_option == 'lujvo-expand':
+        from transformers import lujvo
+        return lujvo.Transformer(expand=True)
     else:
         bad_transformer()
 
