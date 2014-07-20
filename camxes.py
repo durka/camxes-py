@@ -83,17 +83,22 @@ def python_platform():
         return "Jython" if platform.system() == "Java" else "CPython"
 
 def python_version():
-    (major, minor, _) = platform.python_version_tuple()
+    (major, minor, patch) = platform.python_version_tuple()
     return (major * 10) + minor
 
-def run(text, options):
+def do_parse(text, options):
     parser = build_parser(options)
     parsed = parser.parse(text)
     transformer = build_transformer(options.transformer, parser)
-    transformed = transformer.transform(parsed)
+    return transformer.transform(parsed), transformer
+
+def main(text, options):
+    transformed, transformer = do_parse(text, options)
     print serialize(transformed,
                     options.serializer,
                     default_object_serializer(transformer))
+def run(text, options):
+    main(text, options)
 
 def build_parser(options):
     parser_option = options.parser if len(PARSERS) > 1 else "camxes-ilmen"
