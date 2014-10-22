@@ -12,7 +12,7 @@ from parsimonious_ext.expression_nodes import LITERAL, REGEX
 from structures.gensuha \
   import Gensuha, Cmevla, Gismu, Lujvo, Fuhivla, Cmavo, Naljbo
 
-SELMAHO_UNKNOWN = "TOLSLABU"
+SELMAHO_UNKNOWN = "EXP"
 SELMAHO_Y       = "Y"
 
 def is_selmaho_expression(name):
