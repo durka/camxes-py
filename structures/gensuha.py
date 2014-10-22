@@ -95,6 +95,10 @@ class Fuhivla3(Brivla):
 
   GENTURTAI = "type-3 fuhivla"
 
+class Fuhivla35(Brivla):
+
+  GENTURTAI = "type-3.5 fuhivla"
+
 class Fuhivla4(Brivla):
 
   GENTURTAI = "type-4 fuhivla"

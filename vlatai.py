@@ -13,10 +13,10 @@ from transformers.vlatai import Visitor
 
 VLATAI_RULE = "vlatai"
 
-def run(text):
-    parser = build_parser()
-    gensuha = analyze_morphology(parser, text)
-    print jbovlaste_types.classify(gensuha)
+def main(text):
+    for word in text:
+        gensuha = analyze_morphology(build_parser(), word)
+        print '%s:' % word, jbovlaste_types.classify(gensuha)
 
 def build_parser():
     return Parser(VLATAI_RULE)
@@ -31,10 +31,10 @@ def analyze_morphology(parser, text):
         pass
     return gensuha
 
-def _main():
-    configure_platform()
-    text = " ".join(sys.argv[1:])
-    run(text)
-
 if __name__ == '__main__':
-    _main()
+    import sys
+    import itertools
+    text = itertools.chain(*map(lambda s: s.split(' '), sys.argv[1:]))
+    configure_platform()
+    main(text)
+

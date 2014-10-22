@@ -2,7 +2,8 @@
 # pylint: disable=I0011, C0111, C0326
 
 from structures.gensuha \
-  import Cmevla, Gismu, Lujvo, Fuhivla, Fuhivla3, Fuhivla4, Cmavo, ZeiLujvo, BuLetteral, Tosmabru, Slinkuhi
+  import Cmevla, Gismu, Lujvo, Fuhivla, Fuhivla3, Fuhivla35, Fuhivla4, \
+         Cmavo, ZeiLujvo, BuLetteral, Tosmabru, Slinkuhi
 
 # legacy classifications
 CMEVLA        = "cmevla"
@@ -21,6 +22,7 @@ ZEI_LUJVO      = "zei-lujvo"
 TOSMABRU       = "valrtosmabru"
 SLINKUHI       = "valslinku'i"
 FUHIVLA3       = "type-3 fu'ivla"
+FUHIVLA35      = "type-3.5 fu'ivla"
 FUHIVLA4       = "type-4 fu'ivla"
 
 def classify(gensuha):
@@ -43,6 +45,8 @@ def classify_gensuha(gensuha):
         classified = FUHIVLA
     elif isinstance(gensuha, Fuhivla3):
         classified = FUHIVLA3
+    elif isinstance(gensuha, Fuhivla35):
+        classified = FUHIVLA35
     elif isinstance(gensuha, Fuhivla4):
         classified = FUHIVLA4
     elif isinstance(gensuha, Cmavo):
