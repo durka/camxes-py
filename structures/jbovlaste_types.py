@@ -21,9 +21,6 @@ ZEI_LUJVO      = "zei-lujvo"
 # non-jvs types
 TOSMABRU       = "valrtosmabru"
 SLINKUHI       = "valslinku'i"
-FUHIVLA3       = "type-3 fu'ivla"
-FUHIVLA35      = "type-3.5 fu'ivla"
-FUHIVLA4       = "type-4 fu'ivla"
 
 def classify(gensuha, simple=False):
     if gensuha is None or len(gensuha) < 1:
@@ -39,7 +36,9 @@ def classify_gensuha(gensuha, simple=False):
   elif isinstance(gensuha, Gismu):
     return GISMU
   elif isinstance(gensuha, Lujvo):
-    return LUJVO
+    if simple:
+      return LUJVO
+    return '%s/%s' % (LUJVO, '-'.join(gensuha.rafsi))
   elif isinstance(gensuha, Fuhivla):
     if simple:
       return FUHIVLA

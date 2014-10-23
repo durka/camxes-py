@@ -4,7 +4,7 @@
 import re
 from compiler.ast import flatten
 
-from transformers import camxes_morphology
+from transformers import camxes_morphology, find
 from structures.gensuha import BuLetteral, ZeiLujvo, Tosmabru, Slinkuhi, Fuhivla3, Fuhivla35, Fuhivla4
 
 class Transformer(object):
@@ -14,16 +14,6 @@ class Transformer(object):
 
     def default_serializer(self):
         return lambda x: x.as_json()
-
-def find(node, regex):
-  if re.match(regex, node.expr_name) is not None:
-    return node
-  else:
-    for child in node.children:
-      f = find(child, regex)
-      if f is not None:
-        return f
-  return None
 
 class Visitor(camxes_morphology.Visitor):
 
