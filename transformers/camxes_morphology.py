@@ -3,7 +3,6 @@
 
 import re
 
-from compiler.ast import flatten
 from transformers import find, find_all
 
 from parsimonious.nodes import NodeVisitor
@@ -20,8 +19,21 @@ def is_selmaho_expression(name):
     return re.match(r"^[ABCDFGIJKLMNPRSTUVXYZ]([AEIOUY]([IU]|h[AEIOU])?)?$", name)
 
 # flatten and join textual nodes
+def flatten(tree, collapse=False):
+    s = []
+    for t in tree:
+        if isinstance(t, str):
+            s += [t]
+        elif isinstance(t, Gensuha):
+            if collapse:
+                s += [t.lerpoi]
+            else:
+                s += [t]
+        else:
+            s += flatten(t, collapse)
+    return s
 def lerpoi(children):
-    return "".join(str(child) for child in flatten(children))
+    return "".join(flatten(children, True))
 
 class Transformer(object):
 
@@ -50,21 +62,6 @@ class Visitor(NodeVisitor):
 
     def visit_lujvo(self, node, visited_children):
         return Lujvo(lerpoi(visited_children), [r.text for r in find_all(node, r'(.*rafsi|gismu|fuhivla)')])
-
-    def visit_EOF(self, node, visited_children):
-        return []
-
-    def visit_CMEVLA(self, node, visited_children):
-        return Cmevla(lerpoi(visited_children))
-
-    def visit_BRIVLA(self, node, visited_children):
-        return flatten(visited_children)
-
-    def visit_gismu_2(self, node, visited_children):
-        return Gismu(lerpoi(visited_children))
-
-    def visit_lujvo(self, node, visited_children):
-        return Lujvo(lerpoi(visited_children))
 
     def visit_fuhivla(self, node, visited_children):
         return Fuhivla(lerpoi(visited_children))
