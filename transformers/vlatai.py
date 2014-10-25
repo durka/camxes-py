@@ -32,7 +32,7 @@ class Visitor(camxes_morphology.Visitor):
     def visit_tosmabru(self, node, visited_children):
         return Tosmabru(flatten(visited_children))
 
-    def visit_slinkuhi(self, node, visited_children):
+    def visit_slinkuhi_no_recurse(self, node, visited_children):
         return Slinkuhi(flatten(visited_children))
 
     def visit_vlatai_bu_clause(self, node, visited_children):
@@ -61,20 +61,5 @@ class Visitor(camxes_morphology.Visitor):
                     and re.match(hyphen, node.text[2:5], re.I)):
                 return Fuhivla3(flatten(visited_children), node.text[:3], node.text[3], node.text[4:])
 
-        return Fuhivla4(flatten(visited_children))
-
-    def visit_vlatai_type3_fuhivla(self, node, visited_children):
-        a = find(node, r'(stressed_)?(long|CVC)_rafsi').text
-        b = find(node, r'vlatai_fuhivla_hyphen').text
-        c = node.text[(len(a)+len(b)):]
-        return Fuhivla3(flatten(visited_children), a, b, c)
-
-    def visit_vlatai_type35_fuhivla(self, node, visited_children):
-        a = find(node, r'(stressed_)?CCV_rafsi').text
-        b = find(node, r'vlatai_fuhivla_hyphen').text
-        c = node.text[(len(a)+len(b)):]
-        return Fuhivla35(flatten(visited_children), a, b, c)
-
-    def visit_vlatai_type4_fuhivla(self, node, visited_children):
         return Fuhivla4(flatten(visited_children))
 
