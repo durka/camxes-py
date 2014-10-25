@@ -1523,7 +1523,8 @@ fuhivla_head_any = ( !rafsi_string brivla_head_any )
 brivla_head = ( !cmavo !slinkuhi !h &onset unstressed_syllable* )
 brivla_head_any = ( !cmavo !slinkuhi !h &onset unstressed_syllable_any* )
 
-slinkuhi = ( !rafsi_string consonant rafsi_string )
+slinkuhi = ( consonant rafsi_string )
+slinkuhi_no_recurse = ( !cmevla !lujvo ( consonant rafsi_string ) )
 
 rafsi_string = (
   y_less_rafsi*
