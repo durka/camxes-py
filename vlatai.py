@@ -14,8 +14,10 @@ from transformers.vlatai import Visitor
 VLATAI_RULE = "vlatai"
 
 def main(text, simple):
+    parser = build_parser()
+    visitor = Visitor()
     for word in text:
-        gensuha = analyze_morphology(build_parser(), word)
+        gensuha = analyze_morphology(parser, visitor, word)
         velski = jbovlaste_types.classify(gensuha, simple)
         if simple:
             print velski
@@ -25,13 +27,12 @@ def main(text, simple):
 def build_parser():
     return Parser(VLATAI_RULE)
 
-def analyze_morphology(parser, text):
-    visitor = Visitor()
+def analyze_morphology(parser, visitor, text):
     gensuha = None
     try:
         parsed = parser.parse(text)
         gensuha = visitor.visit(parsed)
-    except ParseError:
+    except ParseError as e:
         pass
     return gensuha
 
