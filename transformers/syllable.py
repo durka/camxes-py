@@ -17,11 +17,13 @@ class Visitor(NodeVisitor):
 
   def visit_jbocme(self, node, visited_children):
     kids = filter(lambda x: len(x) > 0, flatten(visited_children))
-    if not any(map(lambda k: any(map(lambda c: c in k, 'AEIOU')), kids)):
-      i = len(kids)-2
-      while i >= 0 and (not any(map(lambda c: c in kids[i], 'aeiou')) or 'y' in kids[i]):
-        i -= 1
-      if i >= 0:
+    if not any(map(lambda k: any(map(lambda c: c in k, 'AEIOUY')), kids)):
+      vocalic_kids = filter(lambda k: 'y' not in k[1]
+                                      and any(map(lambda v: v in k[1],
+                                                  'aeiou')),
+                            zip(range(len(kids)), kids))
+      if len(vocalic_kids) > 1:
+        i = vocalic_kids[-2][0]
         kids[i] = kids[i].upper()
     return ','.join(kids)
 
