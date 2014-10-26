@@ -23,7 +23,7 @@ class Visitor(NodeVisitor):
         i -= 1
       if i >= 0:
         kids[i] = kids[i].upper()
-    return '-'.join(kids)
+    return ','.join(kids)
 
   def visit_zifcme(self, node, visited_children):
     raise Exception('zifcme')
