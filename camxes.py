@@ -91,19 +91,10 @@ def do_parse(text, options):
         if options.transformer in ('lujvo-break', 'lujvo-expand'):
             options.rule = 'lujvo'
         elif options.transformer == 'syllable':
-            if text[-1] in 'bcdfgjklmnprstvxz':
-                options.rule = 'cmevla'
-            else:
-                options.rule = 'fuhivla_any'
-                if text[0] in 'aeiou':
-                    text = 'valrx' + text
-                    options.trim = 5
-                else:
-                    if text[0] == 'r':
-                        text = 'valn' + text
-                    else:
-                        text = 'valr' + text
-                    options.trim = 4
+            options.rule = 'cmevla'
+            if text[-1] not in 'bcdfgjklmnprstvxz':
+                options.trim = -1
+                text += 'x'
 
     parser = build_parser(options)
     transformer = build_transformer(options, parser)
