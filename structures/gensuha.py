@@ -93,11 +93,11 @@ class Lujvo(Brivla, Jvodunlei):
         self.rafsi = []
         for r in rafsi:
             if r[-1] == 'y':
-                if r[-2] == "'":
+                if r[-2] in "'h":
                     self.rafsi.append(r[:-2]) # extended rafsi
                 else:
                     self.rafsi.append(r[:-1]) # normal rafsi plus 'y'
-            elif r[-2:] == "y'":
+            elif r[-2:] in ["y'", "yh"]:
                 self.rafsi.append(r[:-2]) # extended rafsi
             elif (len(r) in [4, 5]) and (r[-1] in ['r', 'n']):
                 self.rafsi.append(r[:-1]) # normal rafsi plus hyphen
