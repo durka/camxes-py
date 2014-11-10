@@ -17,7 +17,7 @@ class Visitor(NodeVisitor):
 
   def visit_jbocme(self, node, visited_children):
     kids = filter(lambda x: len(x) > 0, flatten(visited_children))
-    if not any(map(lambda k: any(map(lambda c: c in k, 'AEIOUY')), kids)):
+    if not any(map(lambda k: any(map(lambda c: c.isupper(), k)), kids)):
       vocalic_kids = filter(lambda k: 'y' not in k[1]
                                       and any(map(lambda v: v in k[1],
                                                   'aeiou')),
@@ -34,7 +34,7 @@ class Visitor(NodeVisitor):
     return visited_children[0]
 
   def visit_any_syllable(self, node, visited_children):
-    if any(map(lambda c: c in node.text, 'AEIOU')):
+    if any(map(lambda c: c.isupper(), node.text)):
       text = node.text.upper()
     else:
       text = node.text
