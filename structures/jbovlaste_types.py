@@ -43,7 +43,7 @@ def classify_gensuha(gensuha, simple=False):
     if simple:
       return FUHIVLA
     if isinstance(gensuha, Fuhivla3):
-      return '%s/%s/%s-%s-%s' % (FUHIVLA, gensuha.type, gensuha.rafsi, gensuha.hyphen, gensuha.payload)
+      return '%s/%s/%s-%s' % (FUHIVLA, gensuha.type, gensuha.rafsi, gensuha.payload)
     return '%s/%s' % (FUHIVLA, gensuha.type)
   elif isinstance(gensuha, Cmavo):
     if simple:

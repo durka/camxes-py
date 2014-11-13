@@ -106,8 +106,8 @@ class Lujvo(Brivla, Jvodunlei):
 
     def as_json(self):
         return OrderedDict([
-            ( "genturtai", self.GENTURTAI ),
-            ( "rafsi",         self.rafsi         )
+            ( "genturtai", self.GENTURTAI),
+            ( "rafsi",         self.rafsi)
         ])
 
 class Fuhivla(Brivla):
@@ -118,40 +118,36 @@ class Fuhivla3(Fuhivla):
 
     GENTURTAI = "fuhivla"
 
-    def __init__(self, lerpoi, rafsi, hyphen, payload):
+    def __init__(self, lerpoi, rafsi, payload):
         self.lerpoi = lerpoi
         self.type = "3"
         self.rafsi = rafsi
-        self.hyphen = hyphen
         self.payload = payload
 
     def as_json(self):
         return OrderedDict([
             ( "genturtai", self.GENTURTAI ),
-            ( "type",            self.type            ),
-            ( "rafsi",         self.rafsi         ),
-            ( "hyphen",        self.hyphen        ),
-            ( "payload",     self.payload     )
+            ( "type",            self.type),
+            ( "rafsi",         self.rafsi ),
+            ( "payload",     self.payload )
         ])
 
 class Fuhivla35(Fuhivla3):
 
     GENTURTAI = "fuhivla"
 
-    def __init__(self, lerpoi, rafsi, hyphen, payload):
+    def __init__(self, lerpoi, rafsi, payload):
         self.lerpoi = lerpoi
         self.type = "3.5"
         self.rafsi = rafsi
-        self.hyphen = hyphen
         self.payload = payload
 
     def as_json(self):
         return OrderedDict([
             ( "genturtai", self.GENTURTAI ),
-            ( "type",            self.type            ),
-            ( "rafsi",         self.rafsi         ),
-            ( "hyphen",        self.hyphen        ),
-            ( "payload",     self.payload     )
+            ( "type",            self.type),
+            ( "rafsi",         self.rafsi ),
+            ( "payload",     self.payload )
         ])
 
 class Fuhivla4(Fuhivla):
@@ -165,7 +161,7 @@ class Fuhivla4(Fuhivla):
     def as_json(self):
         return OrderedDict([
             ( "genturtai", self.GENTURTAI ),
-            ( "type",            self.type            )
+            ( "type",            self.type)
         ])
 
 class Cmavo(Valsi):
