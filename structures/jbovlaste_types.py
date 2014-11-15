@@ -50,7 +50,10 @@ def classify_gensuha(gensuha, simple=False):
       return CMAVO
     return '%s/%s' % (CMAVO, gensuha.selmaho)
   elif isinstance(gensuha, ZeiLujvo):
-    return ZEI_LUJVO
+    if simple:
+      return ZEI_LUJVO
+    else:
+      return '%s (%s)' % (ZEI_LUJVO, classify_gensuha_sequence(filter(lambda v: v.lerpoi != 'zei', gensuha.vlapoi)))
   elif isinstance(gensuha, BuLetteral):
     return BU_LETTERAL
   elif isinstance(gensuha, Tosmabru):
