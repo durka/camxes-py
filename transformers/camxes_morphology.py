@@ -51,8 +51,11 @@ class Visitor(NodeVisitor):
     def visit_EOF(self, node, visited_children):
         return []
 
-    def visit_CMEVLA(self, node, visited_children):
-        return Cmevla(lerpoi(visited_children))
+    def visit_jbocme(self, node, visited_children):
+        return Cmevla(lerpoi(visited_children), 'jbocme')
+
+    def visit_zifcme(self, node, visited_children):
+        return Cmevla(lerpoi(visited_children), 'zifcme')
 
     def visit_BRIVLA(self, node, visited_children):
         return flatten(visited_children)

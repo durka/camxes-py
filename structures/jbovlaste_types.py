@@ -32,7 +32,10 @@ def classify(gensuha, simple=False):
 
 def classify_gensuha(gensuha, simple=False):
   if isinstance(gensuha, Cmevla):
-    return CMEVLA
+    if simple:
+      return CMEVLA
+    else:
+      return '%s/%s' % (CMEVLA, gensuha.klesi)
   elif isinstance(gensuha, Gismu):
     return GISMU
   elif isinstance(gensuha, Lujvo):

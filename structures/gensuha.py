@@ -71,7 +71,16 @@ class Cmevla(Valsi):
     GENTURTAI = "cmevla"
 
 class Selbri(object): # not itself a structure, but a property of some structures
-    pass
+  def __init__(self, lerpoi, cmekle):
+    self.lerpoi = lerpoi
+    self.klesi = cmekle
+
+  def as_json(self):
+    return OrderedDict([
+      ( "genturtai", self.GENTURTAI ),
+      ( "lerpoi",    self.lerpoi    ),
+      ( "klesi",     self.klesi     )
+    ])
 
 class Brivla(Valsi, Selbri):
     pass

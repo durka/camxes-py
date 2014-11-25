@@ -28,7 +28,7 @@ class Visitor(NodeVisitor):
     return ','.join(kids)
 
   def visit_zifcme(self, node, visited_children):
-    raise Exception('zifcme')
+    return node.text
 
   def visit_cmevla(self, node, visited_children):
     return visited_children[0]
