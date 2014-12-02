@@ -28,7 +28,8 @@ class Visitor(NodeVisitor):
     return ','.join(kids)
 
   def visit_zifcme(self, node, visited_children):
-    return node.text
+    if self.trim == 0:
+      return node.text
 
   def visit_cmevla(self, node, visited_children):
     return visited_children[0]
