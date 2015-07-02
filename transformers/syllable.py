@@ -25,6 +25,9 @@ class Visitor(NodeVisitor):
       if len(vocalic_kids) > 1:
         i = vocalic_kids[-2][0]
         kids[i] = kids[i].upper()
+      elif len(vocalic_kids) == 1:
+        i = vocalic_kids[-1][0]
+        kids[i] = kids[i].upper()
     return ','.join(kids)
 
   def visit_zifcme(self, node, visited_children):
